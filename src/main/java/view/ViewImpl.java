@@ -1,6 +1,8 @@
 package view;
 
 
+import controller.Controller;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
 public class ViewImpl implements View{
@@ -9,11 +11,31 @@ public class ViewImpl implements View{
 	private Grid grid;
 	private double windowSize;
 	private int size;
-	
-	public ViewImpl(double windowSize, int size) {
+	private Controller controller;
+	public ViewImpl( int size,double windowSize) {
 		super();
 		this.windowSize = windowSize;
-		this.size = size;
+		panel = new BorderPane();
+		setSize(size);
+	}
+
+	@Override
+	public void setSize(int size) {
+		this.size=size;
+		grid = new GridImpl(size, windowSize);
+		panel.setCenter(grid.getGrid());
+	}
+
+	@Override
+	public void setController(Controller controller) {
+		this.controller=controller;
+		grid.setController(controller);
+	}
+
+	@Override
+	public Parent getPanel() {
+		// TODO Auto-generated method stub
+		return panel;
 	}
 	
 	

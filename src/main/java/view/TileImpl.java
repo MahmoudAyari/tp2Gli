@@ -6,14 +6,16 @@ import javafx.animation.ScaleTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 
-public class TileImpl implements Tile {
+@SuppressWarnings("restriction")
+public class TileImpl extends Button implements Tile {
 
 	
 	private int rank;
 	private int size;
 	private double windowSize;
-	private Button tileButton;
+	private Button tile;
 	private long angle;
+	
 	private RotateTransition newTransition;
 	private ScaleTransition mergeTransition;
 	private ParallelTransition winTransition;
@@ -24,24 +26,26 @@ public class TileImpl implements Tile {
 		this.size = size;
 		this.angle = 0;
 		this.rank = 0;
-		this.tileButton = new Button("");
-		this.tileButton.setMinWidth(windowSize / size - size);
-		this.tileButton.setMinHeight(windowSize / size - size);
+		this.tile = new Button("");
+		this.tile.setMinWidth(windowSize / size - size);
+		this.tile.setMinHeight(windowSize / size - size);
 	}
 	
 	public Node getTile(){
-		return tileButton;
+		return tile;
 	}
 	
 	@Override
 	public int getRank() {
-		// TODO Auto-generated method stub
-		return 0;
+		return rank;
 	}
 
 	@Override
 	public void setRank(int rank) {
-		// TODO Auto-generated method stub
+		this.rank=rank;
+		if(rank==0){
+			this.tile = new Button("");
+		}
 		
 	}
 

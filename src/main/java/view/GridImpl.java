@@ -20,8 +20,8 @@ public class GridImpl implements Grid {
 
 		board = new TileImpl[size + 1][size + 1];
 
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
+		for (int i = 1; i <= size; i++) {
+			for (int j = 1; j <= size; j++) {
 				board[i][j] = new TileImpl(size, windowSize);
 				gridPane.add(board[i][j].getTile(), i - 1, j - 1);
 
