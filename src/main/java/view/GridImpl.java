@@ -13,6 +13,7 @@ public class GridImpl implements Grid {
 	private GridPane gridPane;
 	private Tile[][] board;
 
+	@SuppressWarnings("restriction")
 	public GridImpl(int size, double windowSize) {
 		this.gridPane = new GridPane();
 		this.gridPane.setHgap(size);

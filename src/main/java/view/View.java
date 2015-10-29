@@ -12,4 +12,6 @@ public interface View {
    
    
    public Parent getPanel();
+   
+   public void setTile(int x,int y, int rank);
 }

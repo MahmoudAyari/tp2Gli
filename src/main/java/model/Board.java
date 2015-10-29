@@ -36,5 +36,5 @@ public interface Board {
      */
     void commit();
 
-
+    public void addTile();
 }

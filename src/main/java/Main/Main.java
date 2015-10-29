@@ -20,10 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
  
-/**
- *
- * @web http://zoranpavlovic.blogspot.com/
- */
+
 public class Main extends Application {
  
 	final int size = 4;
@@ -35,11 +32,12 @@ public class Main extends Application {
         primaryStage.setTitle("2048");
        
         Board board = new BoardImpl(size);
+        board.addTile();
         Controller controller = new ControllerImpl(size);
         View view = new ViewImpl(size,windowSize);
-       
-        view.setController(controller);
         
+        view.setController(controller);
+        controller.setView(view);
         
         //Adding GridPane to the scene
         Scene scene = new Scene(view.getPanel(), windowSize, windowSize + 60);

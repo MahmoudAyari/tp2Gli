@@ -12,6 +12,8 @@ public class ViewImpl implements View{
 	private double windowSize;
 	private int size;
 	private Controller controller;
+	
+	
 	public ViewImpl( int size,double windowSize) {
 		super();
 		this.windowSize = windowSize;
@@ -36,6 +38,11 @@ public class ViewImpl implements View{
 	public Parent getPanel() {
 		// TODO Auto-generated method stub
 		return panel;
+	}
+
+	@Override
+	public void setTile(int x, int y, int rank) {
+		grid.setTile(x, y, rank);
 	}
 	
 	

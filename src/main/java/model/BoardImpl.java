@@ -1,6 +1,9 @@
 package model;
 
+import java.util.Random;
 import java.util.logging.Logger;
+
+import controller.Controller;
 
 /**
  * Created by plouzeau on 2014-10-09.
@@ -10,7 +13,8 @@ public class BoardImpl implements Board {
 
     private final int sideSizeInSquares;
     private Direction directionToPackInto;
-
+    private Controller controller;
+    
     public BoardImpl(int sideSizeInSquares) {
         if (sideSizeInSquares <= 1) {
             throw new IllegalArgumentException("sideSizeInSquares");
@@ -52,7 +56,7 @@ public class BoardImpl implements Board {
         for (int i = 1; i <= sideSizeInSquares; i++) {
             packLine(i);
         }
-
+        addTile();
     }
 
     /**
@@ -114,6 +118,7 @@ public class BoardImpl implements Board {
      * @param columnIndex  coordinate
      */
     private void writeTile(Tile[][] board, Tile tile, int lineIndex, int columnIndex) {
+    	
         board[computeLineIndex(lineIndex, columnIndex)][computeColumnIndex(lineIndex, columnIndex)] = tile;
     }
 
@@ -226,4 +231,42 @@ public class BoardImpl implements Board {
             logger.info(outputBuffer.toString());
         }
     }
+    
+    public void startGame(){
+    	addTile();
+    	addTile();
+    	commit();
+    }
+    
+    
+    
+    public void addTile() {
+    	if (!availablePlace()) return;
+    	
+    	Random r = new Random();
+		int line = r.nextInt(sideSizeInSquares);
+		int column = r.nextInt(sideSizeInSquares);
+		
+		while (nextBoard[line][column] != null) {
+			line = r.nextInt(sideSizeInSquares);
+			column = r.nextInt(sideSizeInSquares);
+		}
+	
+		//controller.notifyAddTile(column + 1, line + 1);
+    	nextBoard[line][column] = new TileImpl(1);
+    }
+    
+    private boolean availablePlace() {
+        for (int i = 0; i < sideSizeInSquares; i++) {
+            for (int j = 0; j < sideSizeInSquares; j++) {
+                if(currentBoard[i][j] == null){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    
+    
 }

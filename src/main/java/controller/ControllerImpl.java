@@ -1,22 +1,29 @@
 package controller;
 
+import model.Tile;
 import model.Board;
 import model.Board.Direction;
+import model.BoardImpl;
 import view.View;
+import view.ViewImpl;
 
 public class ControllerImpl implements Controller {
 
 	private int size;
-	private Board broad;
+	private int rank ;
+	private Board board;
 	private View view;
-	
+	boolean win,lose;
 	public ControllerImpl(int size) {
 		this.size = size;
+		this.rank = 0;
+		board = new BoardImpl(size);
+		
 	}
 
 	@Override
 	public void setModel(Board board) {
-		this.broad=board;
+		this.board=board;
 		
 	}
 
@@ -27,7 +34,9 @@ public class ControllerImpl implements Controller {
 
 	
 	private void move(Direction direction){
-		
+		board.packIntoDirection(direction);
+        board.commit();
+        drawBoard();
 	}
 	
 	
@@ -54,5 +63,12 @@ public class ControllerImpl implements Controller {
 		// TODO Auto-generated method stub
 		move(Direction.RIGHT);
 	}
-
+	public void drawBoard() {
+		for (int i = 1; i <= size; i++) {
+			for (int j = 1; j <= size; j++) {
+				Tile tile = board.getTile(i, j);
+				view.setTile(j, i,(tile != null) ? tile.getRank() : 0);
+			}
+		}
+	}
 }
