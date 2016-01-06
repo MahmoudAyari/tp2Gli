@@ -32,13 +32,17 @@ public class Main extends Application {
         primaryStage.setTitle("2048");
        
         Board board = new BoardImpl(size);
-        board.addTile();
+        
         Controller controller = new ControllerImpl(size);
         View view = new ViewImpl(size,windowSize);
         
-        view.setController(controller);
-        controller.setView(view);
         
+        controller.setView(view);
+        controller.setModel(board);
+        view.setController(controller);
+        board.setController(controller);
+        board.startGame();
+        controller.drawBoard();
         //Adding GridPane to the scene
         Scene scene = new Scene(view.getPanel(), windowSize, windowSize + 60);
         primaryStage.setScene(scene);

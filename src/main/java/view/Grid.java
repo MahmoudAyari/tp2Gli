@@ -5,7 +5,7 @@ import javafx.scene.Node;
 
 public interface Grid {
 
-	public void setController(Controller controller);
+	public void move(Controller controller);
 
 	public Node getGrid();
 

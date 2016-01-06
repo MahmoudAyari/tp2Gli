@@ -10,17 +10,28 @@ import view.ViewImpl;
 public class ControllerImpl implements Controller {
 
 	private int size;
-	private int rank ;
+	
 	private Board board;
 	private View view;
 	boolean win,lose;
 	public ControllerImpl(int size) {
 		this.size = size;
-		this.rank = 0;
 		board = new BoardImpl(size);
 		
 	}
-
+    /*
+     * init new game
+     */
+	public void initGame() {
+		
+		board.setSideSizeInSquares(size);
+		view.setSize(size);
+		view.setController(this);
+		board.startGame();
+		
+		drawBoard();
+	}
+	
 	@Override
 	public void setModel(Board board) {
 		this.board=board;
@@ -67,7 +78,7 @@ public class ControllerImpl implements Controller {
 		for (int i = 1; i <= size; i++) {
 			for (int j = 1; j <= size; j++) {
 				Tile tile = board.getTile(i, j);
-				view.setTile(j, i,(tile != null) ? tile.getRank() : 0);
+				view.setTile(j, i, (tile != null) ? tile.getRank() : 0);
 			}
 		}
 	}

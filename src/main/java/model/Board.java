@@ -1,5 +1,7 @@
 package model;
 
+import controller.Controller;
+
 /**
  * Created by plouzeau on 2014-10-09.
  * <p/>
@@ -24,12 +26,16 @@ public interface Board {
         LEFT, RIGHT, TOP, BOTTOM;
     }
 
+    
+    public void setSideSizeInSquares(int sideSizeInSquares);
     /**
      * Apply the only game action: packing tiles
      * @param direction  where to push the tiles
      */
     void packIntoDirection(Direction direction);
 
+    public void startGame();
+    
     /**
      * Validate the step effects
      * NOTE: do we need this in the interface?
@@ -37,4 +43,6 @@ public interface Board {
     void commit();
 
     public void addTile();
+    
+    public void setController(Controller controller);
 }

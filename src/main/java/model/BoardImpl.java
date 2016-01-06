@@ -11,9 +11,12 @@ import controller.Controller;
 public class BoardImpl implements Board {
 
 
-    private final int sideSizeInSquares;
+    private  int sideSizeInSquares;
     private Direction directionToPackInto;
     private Controller controller;
+    
+    private Tile[][] currentBoard;
+    private Tile[][] nextBoard;
     
     public BoardImpl(int sideSizeInSquares) {
         if (sideSizeInSquares <= 1) {
@@ -22,16 +25,21 @@ public class BoardImpl implements Board {
         this.sideSizeInSquares = sideSizeInSquares;
         currentBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
         nextBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
+       
     }
 
     @Override
     public int getSideSizeInSquares() {
         return this.sideSizeInSquares;
     }
+    @Override
+    public void setSideSizeInSquares(int sideSizeInSquares) {
+        this.sideSizeInSquares = sideSizeInSquares;
+        this.currentBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
+        this.nextBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
+    }
 
-
-    private Tile[][] currentBoard;
-    private Tile[][] nextBoard;
+   
 
     /**
      * Return the tile at a given coordinate, or null if none exists there.
@@ -57,6 +65,7 @@ public class BoardImpl implements Board {
             packLine(i);
         }
         addTile();
+        
     }
 
     /**
@@ -65,7 +74,6 @@ public class BoardImpl implements Board {
      */
     @Override
     public void commit() {
-
         currentBoard = nextBoard;
         nextBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
     }
@@ -233,6 +241,7 @@ public class BoardImpl implements Board {
     }
     
     public void startGame(){
+    	
     	addTile();
     	addTile();
     	commit();
@@ -266,6 +275,12 @@ public class BoardImpl implements Board {
         }
         return false;
     }
+
+	
+	@Override
+	 public void setController(Controller controller) {
+		this.controller = controller;
+	}
 
     
     

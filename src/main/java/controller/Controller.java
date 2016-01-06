@@ -17,4 +17,5 @@ public interface Controller {
 
 	public void moveRight();
 
+	public void drawBoard();
 }

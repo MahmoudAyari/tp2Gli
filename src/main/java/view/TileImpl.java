@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 @SuppressWarnings("restriction")
 public class TileImpl  implements Tile {
 
-	private final static Color[] COLOR = { Color.WHITE, Color.MINTCREAM, Color.MEDIUMSPRINGGREEN, Color.CYAN,
+	private final static Color[] COLOR = { Color.WHITE, Color.DEEPPINK, Color.MEDIUMSPRINGGREEN, Color.CYAN,
 			Color.ROYALBLUE, Color.MIDNIGHTBLUE, Color.DARKCYAN, Color.BLUE, Color.DEEPSKYBLUE, Color.STEELBLUE,
 			Color.LIGHTSKYBLUE, Color.GOLD, };
 	private int rank;
@@ -24,10 +24,7 @@ public class TileImpl  implements Tile {
 	private Button tile;
 	private long angle;
 	
-	private RotateTransition newTransition;
-	private ScaleTransition mergeTransition;
-	private ParallelTransition winTransition;
-	private ScaleTransition lostTransition;
+
 	
 	public TileImpl(int size, double windowSize) {
 		
@@ -38,6 +35,7 @@ public class TileImpl  implements Tile {
 		this.tile = new Button("");
 		this.tile.setMinWidth(windowSize / size - size);
 		this.tile.setMinHeight(windowSize / size - size);
+		
 	}
 	
 	public Node getTile(){
@@ -52,8 +50,10 @@ public class TileImpl  implements Tile {
 	@Override
 	public void setRank(int rank) {
 		this.rank=rank;
+		
 		if(rank==0){
-			this.tile = new Button("");
+			
+			this.tile.setText("");
 			this.tile.setBackground(
 					new Background(new BackgroundFill(COLOR[0], new CornerRadii(5), Insets.EMPTY))
 				);

@@ -3,9 +3,14 @@ package view;
 import controller.Controller;
 import javafx.scene.input.*;
 import javafx.scene.input.KeyEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.event.EventHandler;
 
 public class GridImpl implements Grid {
@@ -18,7 +23,7 @@ public class GridImpl implements Grid {
 		this.gridPane = new GridPane();
 		this.gridPane.setHgap(size);
 		this.gridPane.setVgap(size);
-
+		
 		board = new TileImpl[size + 1][size + 1];
 
 		for (int i = 1; i <= size; i++) {
@@ -33,7 +38,8 @@ public class GridImpl implements Grid {
 
 	@SuppressWarnings("restriction")
 	@Override
-	public void setController(Controller controller) {
+	public void move(Controller controller) {
+		
 		this.gridPane.addEventHandler(KeyEvent.KEY_RELEASED, (keyEvent)->{
 	                          
 	                            	switch (keyEvent.getCode()){
@@ -45,6 +51,7 @@ public class GridImpl implements Grid {
 	                              }
 
 	                                keyEvent.consume();
+	                               
 	                            }
 	                    );
 	 }

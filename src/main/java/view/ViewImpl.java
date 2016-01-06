@@ -31,7 +31,7 @@ public class ViewImpl implements View{
 	@Override
 	public void setController(Controller controller) {
 		this.controller=controller;
-		grid.setController(controller);
+		grid.move(controller);
 	}
 
 	@Override
