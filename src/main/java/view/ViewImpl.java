@@ -35,8 +35,7 @@ public class ViewImpl implements View{
 	}
 
 	@Override
-	public Parent getPanel() {
-		// TODO Auto-generated method stub
+	public Parent getPanel() { 
 		return panel;
 	}
 
