@@ -82,4 +82,62 @@ public class ControllerImpl implements Controller {
 			}
 		}
 	}
+	
+	
+	
+	private boolean ableToMove(Direction direction) {
+        int offsetX = 0, offsetY = 0;
+        int lowerX = 1, lowerY = 1;
+        int upperX = size, upperY = size;
+        
+        switch (direction) {
+            case LEFT:
+                offsetX = - 1;
+                lowerX = 2;
+                break;
+            case RIGHT:
+                offsetX = + 1;
+                upperX = size - 1;
+                break;
+            case BOTTOM:
+                offsetY = + 1;
+                upperY = size - 1;
+                break;
+            case TOP:
+                offsetY = - 1;
+                lowerY = 2;
+        }
+        
+        for (int i = lowerY; i <= upperY; i++) {
+            for (int j = lowerX; j <= upperX; j++) {
+                if (board.getTile(i, j) != null) {
+                    if (board.getTile(i + offsetY, j + offsetX) == null || board.getTile(i, j).getRank() == board.getTile(i + offsetY, j + offsetX).getRank()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+	
+	
+	@Override
+	public boolean win() {
+		for (int i = 1; i <= size; i++) {
+			for (int j = 1; j <= size; j++) {
+				if (board.getTile(i, j) != null && board.getTile(i, j).getRank() == 11) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	@Override
+	public boolean lost() {
+		boolean lost =!(ableToMove(Direction.TOP)
+        		||ableToMove(Direction.BOTTOM)
+        		||ableToMove(Direction.LEFT)
+        		||ableToMove(Direction.RIGHT));
+		return lost;
+	}
 }

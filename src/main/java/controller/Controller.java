@@ -18,4 +18,8 @@ public interface Controller {
 	public void moveRight();
 
 	public void drawBoard();
+	
+	public boolean win();
+
+	public boolean lost();
 }
