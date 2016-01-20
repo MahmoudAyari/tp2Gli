@@ -9,7 +9,7 @@ public interface Grid {
 
 	public Node getGrid();
 
-	public Tile getTile(int x, int y);
+	public GUITile getTile(int x, int y);
 
 	public void setTile(int x, int y, int rank);
 }

@@ -1,6 +1,6 @@
 package view;
 
-import controller.Controller;
+import controller.Controller; 
 import javafx.scene.Parent;
 public interface View {
  
@@ -11,4 +11,10 @@ public interface View {
    public Parent getPanel();
    
    public void setTile(int x,int y, int rank);
+   
+   public void setGamerWon(boolean win);
+ 
+   public void setGamerLost(boolean lost);
+   
+   public GUITile getTile(int x, int y);
 }

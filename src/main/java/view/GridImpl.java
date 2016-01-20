@@ -16,7 +16,7 @@ import javafx.event.EventHandler;
 public class GridImpl implements Grid {
 
 	private GridPane gridPane;
-	private Tile[][] board;
+	private GUITile[][] board;
 
 	@SuppressWarnings("restriction")
 	public GridImpl(int size, double windowSize) {
@@ -24,11 +24,11 @@ public class GridImpl implements Grid {
 		this.gridPane.setHgap(size);
 		this.gridPane.setVgap(size);
 		
-		board = new TileImpl[size + 1][size + 1];
+		board = new GUITileImpl[size + 1][size + 1];
 
 		for (int i = 1; i <= size; i++) {
 			for (int j = 1; j <= size; j++) {
-				board[i][j] = new TileImpl(size, windowSize);
+				board[i][j] = new GUITileImpl(size, windowSize);
 				gridPane.add(board[i][j].getTile(), i - 1, j - 1);
 
 			}
@@ -62,7 +62,7 @@ public class GridImpl implements Grid {
 	}
 
 	@Override
-	public Tile getTile(int x, int y) {
+	public GUITile getTile(int x, int y) {
 		return board[x][y];
 	}
 

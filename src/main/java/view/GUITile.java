@@ -2,7 +2,7 @@ package view;
 
 import javafx.scene.Node;
 
-public interface Tile {
+public interface GUITile {
 
 	
 	public int getRank();

@@ -1,9 +1,12 @@
 package controller;
 
-import model.Tile;
+import model.Tile; 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import model.Board;
 import model.Board.Direction;
 import model.BoardImpl;
+import view.GUITile;
 import view.View;
 import view.ViewImpl;
 
@@ -13,10 +16,33 @@ public class ControllerImpl implements Controller {
 	
 	private Board board;
 	private View view;
-	boolean win,lose;
+	
+	private BooleanProperty win;
+	private BooleanProperty lost;
+	
 	public ControllerImpl(int size) {
 		this.size = size;
 		board = new BoardImpl(size);
+		win = new SimpleBooleanProperty();
+		lost = new SimpleBooleanProperty();
+		win.addListener((observable, oldValue, newValue) -> {
+			for (int x = 1; x <= size; x++) {
+				for (int y = 1; y <= size; y++) {
+					GUITile tile = view.getTile(x, y);
+					if (tile.getRank() == 11) {
+						//tile.playWinTile();
+					}
+				}
+			}
+		});
+		
+		lost.addListener((observable, oldValue, newValue) -> {
+			for (int x = 1; x <= size; x++) {
+				for (int y = 1; y <= size; y++) {
+					//view.getTile(x, y).playLostTile();
+				}
+			}
+		});
 		
 	}
     /*
@@ -45,9 +71,19 @@ public class ControllerImpl implements Controller {
 
 	
 	private void move(Direction direction){
+	if (!lost.get() && !win.get() && ableToMove(direction)) {
 		board.packIntoDirection(direction);
         board.commit();
         drawBoard();
+        
+        boolean gamerWin = win();
+        view.setGamerWon(gamerWin);
+        win.set(gamerWin);
+        
+        boolean gamerLost = lost();
+        view.setGamerLost(gamerLost);
+        lost.set(gamerLost);
+     	 }
 	}
 	
 	
@@ -140,4 +176,17 @@ public class ControllerImpl implements Controller {
         		||ableToMove(Direction.RIGHT));
 		return lost;
 	}
+	public BooleanProperty getWin() {
+		return win;
+	}
+	public void setWin(BooleanProperty win) {
+		this.win = win;
+	}
+	public BooleanProperty getLost() {
+		return lost;
+	}
+	public void setLost(BooleanProperty lost) {
+		this.lost = lost;
+	}
+	
 }

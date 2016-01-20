@@ -13,7 +13,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 @SuppressWarnings("restriction")
-public class TileImpl  implements Tile {
+public class GUITileImpl  implements GUITile {
 
 	private final static Color[] COLOR = { Color.WHITE, Color.DEEPPINK, Color.MEDIUMSPRINGGREEN, Color.CYAN,
 			Color.ROYALBLUE, Color.MIDNIGHTBLUE, Color.DARKCYAN, Color.BLUE, Color.DEEPSKYBLUE, Color.STEELBLUE,
@@ -26,7 +26,7 @@ public class TileImpl  implements Tile {
 	
 
 	
-	public TileImpl(int size, double windowSize) {
+	public GUITileImpl(int size, double windowSize) {
 		
 		this.windowSize = windowSize;
 		this.size = size;
