@@ -12,9 +12,10 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 @SuppressWarnings("restriction")
 public class GUITileImpl  implements GUITile {
-
+	private static final String CSS = "";
 	private final static Color[] COLOR = { Color.WHITE, Color.DEEPPINK, Color.MEDIUMSPRINGGREEN, Color.CYAN,
 			Color.ROYALBLUE, Color.MIDNIGHTBLUE, Color.DARKCYAN, Color.BLUE, Color.DEEPSKYBLUE, Color.STEELBLUE,
 			Color.LIGHTSKYBLUE, Color.GOLD, };
@@ -66,6 +67,23 @@ public class GUITileImpl  implements GUITile {
 				);
 			}
 		}
+
+	@Override
+	public void playWinTile() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void playLostTile() {
+		ScaleTransition scaleTransition = new ScaleTransition();
+		scaleTransition.setDuration(new Duration(50.0));
+		scaleTransition.setNode(tile);
+		scaleTransition.setToX(0);
+		scaleTransition.setToY(0);
+		scaleTransition.setCycleCount(1);		
+		scaleTransition.play();	
+	}
 		
 
 

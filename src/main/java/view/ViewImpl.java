@@ -4,8 +4,12 @@ package view;
 import controller.Controller;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 public class ViewImpl implements View{
 
@@ -24,6 +28,7 @@ public class ViewImpl implements View{
 		setSize(size);
 		win = new SimpleBooleanProperty();
 		lost = new SimpleBooleanProperty();
+		panel.setBottom(footer());
 	}
 
 	@Override
@@ -66,6 +71,29 @@ public class ViewImpl implements View{
 		
 	}
 	
+	private Node footer() {
+		HBox info = new HBox();
+		
+		final Label labelWin = new Label("You Win");
+		
+		final Label labelLost = new Label("Game Over");
+
+		info.setMinWidth(windowSize);
+		info.setAlignment(Pos.CENTER);
+		
+		labelWin.setStyle("-fx-font-family: Helvetica ;-fx-font-size: 16px;-fx-font-weight: bold;-fx-text-fill: green");		
+		labelLost.setStyle("-fx-font-family: Helvetica ;-fx-font-size: 16px;-fx-font-weight: bold;-fx-text-fill: red");
+
+		this.win.addListener((observable, oldValue, newValue) -> labelWin.setVisible(newValue));
+		this.lost.addListener((observable, oldValue, newValue) -> labelLost.setVisible(newValue));
+		
+		labelWin.setVisible(false);
+		labelLost.setVisible(false);
+		
+		info.getChildren().addAll(labelWin, labelLost);
+		
+		return info;
+	}
 	
 	
 	

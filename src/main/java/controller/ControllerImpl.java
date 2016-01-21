@@ -30,7 +30,7 @@ public class ControllerImpl implements Controller {
 				for (int y = 1; y <= size; y++) {
 					GUITile tile = view.getTile(x, y);
 					if (tile.getRank() == 11) {
-						//tile.playWinTile();
+						tile.playWinTile();
 					}
 				}
 			}
@@ -39,7 +39,7 @@ public class ControllerImpl implements Controller {
 		lost.addListener((observable, oldValue, newValue) -> {
 			for (int x = 1; x <= size; x++) {
 				for (int y = 1; y <= size; y++) {
-					//view.getTile(x, y).playLostTile();
+					 view.getTile(x, y).playLostTile();
 				}
 			}
 		});

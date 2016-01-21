@@ -10,4 +10,8 @@ public interface GUITile {
 	public void setRank(int rank);
 	
 	public Node getTile();
+	
+	public void playWinTile();
+
+	public void playLostTile();
 }
