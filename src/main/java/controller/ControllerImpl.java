@@ -45,9 +45,7 @@ public class ControllerImpl implements Controller {
 		});
 		
 	}
-    /*
-     * init new game
-     */
+   
 	public void initGame() {
 		
 		board.setSideSizeInSquares(size);

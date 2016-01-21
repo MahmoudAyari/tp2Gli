@@ -22,4 +22,6 @@ public interface Controller {
 	public boolean win();
 
 	public boolean lost();
+	
+	public void initGame();
 }

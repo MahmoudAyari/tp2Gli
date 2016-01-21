@@ -71,7 +71,13 @@ public class GUITileImpl  implements GUITile {
 	@Override
 	public void playWinTile() {
 		// TODO Auto-generated method stub
-		
+		ScaleTransition scaleTransition = new ScaleTransition();
+		scaleTransition.setDuration(new Duration(50.0));
+		scaleTransition.setNode(tile);
+		scaleTransition.setToX(0);
+		scaleTransition.setToY(0);
+		scaleTransition.setCycleCount(1);		
+		scaleTransition.play();	
 	}
 
 	@Override

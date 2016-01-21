@@ -4,9 +4,13 @@ package view;
 import controller.Controller;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -28,6 +32,7 @@ public class ViewImpl implements View{
 		setSize(size);
 		win = new SimpleBooleanProperty();
 		lost = new SimpleBooleanProperty();
+		panel.setTop(top());
 		panel.setBottom(footer());
 	}
 
@@ -70,6 +75,24 @@ public class ViewImpl implements View{
 		return grid.getTile(x, y);
 		
 	}
+	
+	private Node top() {
+		
+		HBox info = new HBox(5);		
+		 
+		Button buttonNewGame = new Button("New game");
+
+		info.setMinWidth(windowSize);
+		 
+        buttonNewGame.setFocusTraversable(false);
+        
+        buttonNewGame.setOnMouseClicked(e -> controller.initGame());
+
+        info.getChildren().addAll(buttonNewGame);
+        
+        return info;
+	}
+	
 	
 	private Node footer() {
 		HBox info = new HBox();
